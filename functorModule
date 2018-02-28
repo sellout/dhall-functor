@@ -1,0 +1,27 @@
+    let functorModule
+        :   ∀(f : Type → Type)
+          → { map        : ∀(Functor : f) → ./Functor  f
+            , leftConst  : ∀(a : Type) → ∀(b : Type) → a → f b → f a
+            , rightConst : ∀(a : Type) → ∀(b : Type) → f a → b → f b
+            , void       : ∀(a : Type) → f a → f {}
+            }
+        =   λ(f : Type → Type)
+          → { map        =
+                ∀(a : Type) → ∀(b : Type) → ∀(g : a → b) → ∀(fa : f a) → f b
+            , leftConst  =
+                  λ(a : Type)
+                → λ(b : Type)
+                → λ(val : a)
+                → λ(fb : f b)
+                → { map = fb.map (λ(bVal : b) → a) }
+            , rightConst =
+                  λ(f : ./Functor )
+                → λ(a : Type)
+                → λ(b : Type)
+                → λ(fa : f a)
+                → λ(val : b)
+                → { map = fb.map (λ(aVal : a) → b) }
+            , void       = λ(fa : f a) → ./rightConst  fa {=}
+            }
+
+in  functorModule
