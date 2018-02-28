@@ -1,0 +1,10 @@
+    let leftConst
+        : ∀(f : ./Functor ) → ∀(a : Type) → ∀(b : Type) → a → f b → f a
+        =   λ(f : ./Functor )
+          → λ(a : Type)
+          → λ(b : Type)
+          → λ(val : a)
+          → λ(fb : f b)
+          → { map = fb.map (λ(bVal : b) → a) }
+
+in  leftConst
