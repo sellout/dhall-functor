@@ -1,10 +1,6 @@
     let functorModule
         :   ∀(f : Type → Type)
-          → ∀ ( functor
-              : { map :
-                    ∀(a : Type) → ∀(b : Type) → ∀(g : a → b) → ∀(fa : f a) → f b
-                }
-              )
+          → ∀(functor : ./Functor  f)
           → { map        :
                 ∀(a : Type) → ∀(b : Type) → ∀(g : a → b) → ∀(fa : f a) → f b
             , leftConst  :
